@@ -1,0 +1,21 @@
+{
+  "short_name": "Schema Generator",
+  "name": "Data Schema & API Endpoint Generator",
+  "description": "Generate JSON schemas, API endpoints, and ERD diagrams from natural language descriptions",
+  "icons": [
+    {
+      "src": "logo.png",
+      "sizes": "192x192 256x256 384x384 512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#3B82F6",
+  "background_color": "#ffffff"
+} 
