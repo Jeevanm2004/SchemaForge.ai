@@ -1,0 +1,16 @@
+[build]
+  # Tell Netlify that the frontend app is in the 'frontend' directory
+  base = "frontend"
+  
+  # The command to build the React application
+  command = "CI=false npm run build"
+  
+  # The directory that contains the compiled assets (relative to the base directory)
+  publish = "build"
+
+# This is required for React Router to work correctly on Netlify
+# It redirects all requests to index.html so React can handle the routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
