@@ -23,24 +23,28 @@ class AIService {
   }
 
   async testApiKey() {
+    if (!this.genAI) {
+      console.log('⚠️ AI Service not initialized - missing API key');
+      return;
+    }
     try {
-      // Try Gemini 2.0 Flash first (latest and free tier available)
-      const model = this.genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      // Try Gemini 3.6 Flash first (latest and free tier available)
+      const model = this.genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
       const result = await model.generateContent("Hello");
-      console.log('🔑 API key test successful with Gemini 2.0 Flash - AI features enabled');
+      console.log('🔑 API key test successful with Gemini 3.6 Flash - AI features enabled');
     } catch (error) {
-      console.error('❌ Gemini 2.0 Flash test failed:', error.message);
+      console.error('❌ Gemini 3.6 Flash test failed:', error.message);
       console.log('🔍 Trying fallback models...');
       
-      // Try Gemini 1.5 Flash as backup
+      // Try Gemini 2.0 Flash as backup
       try {
-        const altModel = this.genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const altModel = this.genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
         await altModel.generateContent("Hello");
-        console.log('🔑 API key test successful with Gemini 1.5 Flash - AI features enabled');
+        console.log('🔑 API key test successful with Gemini 2.0 Flash - AI features enabled');
       } catch (altError) {
         console.error('❌ All model tests failed. Checking available models...');
-        console.log('💡 Available models: gemini-2.0-flash, gemini-1.5-flash, gemini-1.5-pro');
-        console.log('🆓 Free tier: Gemini 2.0 Flash and 1.5 Flash available');
+        console.log('💡 Available models: gemini-3.6-flash, gemini-2.0-flash, gemini-1.5-flash');
+        console.log('🆓 Free tier: Gemini 3.6 Flash and 2.0 Flash available');
         this.genAI = null;
       }
     }
@@ -53,7 +57,7 @@ class AIService {
         return this.basicParsing(description);
       }
 
-      const model = this.genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
+      const model = this.genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
       const prompt = `
         You are a database schema expert. Analyze the following natural language description and extract structured data information.
